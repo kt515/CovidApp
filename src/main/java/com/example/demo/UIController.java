@@ -12,7 +12,7 @@ public class UIController {
 
     @GetMapping("") // map to home page url
     public String viewHomePage() {
-        return "index.html"; // return the html file name eg. index.html
+        return "index"; // return the html file name eg. index.html
     }
     @GetMapping("/public")
     public String viewPublicPage() {
