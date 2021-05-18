@@ -16,8 +16,6 @@ import org.springframework.test.annotation.Rollback;
 public class UserRepositoryTests {
 
     @Autowired
-    private User user;
-    @Autowired
     private UserRepository repo;
 
     @Autowired
@@ -29,7 +27,7 @@ public class UserRepositoryTests {
         user.setId("S9240447G");
         user.setFirstName("Aaron");
         user.setLastName("Lake");
-        user.setUserType("Public");
+        user.setRoles("ROLE_PUBLIC");
         user.setPassword("aaronlake");
 
         User savedUser = repo.save(user); //saved to repository
@@ -38,6 +36,4 @@ public class UserRepositoryTests {
         User existUser = entityManager.find(User.class, savedUser.getId());
         assertThat(existUser.getId()).isEqualTo(user.getId()); //
     }
-
-
 }

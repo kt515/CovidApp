@@ -23,7 +23,7 @@ public class User {
     private String lastName;
 
     @Column(nullable = false, length = 45)
-    private String userType;
+    private String roles;
 
     @Column(nullable = false, length = 200)
     private String password;
@@ -34,7 +34,7 @@ public class User {
                 ", firstname='" + firstName + '\'' +
                 ", lastname='" + lastName + '\'' +
                 ", password='" + password + '\'' +
-                ", userType='" + userType + '\'' +
+                ", userType='" + roles + '\'' +
                 '}';
     }
     // constructors
@@ -42,14 +42,13 @@ public class User {
     public User() {
     }
 
-    public User(String id, String firstName, String lastName, String userType, String password) {
+    public User(String id, String firstName, String lastName, String roles, String password) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userType = userType;
+        this.roles = roles;
         this.password = password;
     }
-
     // getters and setters
 
     public String getId() {
@@ -76,12 +75,12 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getUserType() {
-        return userType;
+    public String getRoles() {
+        return roles;
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
 
     public String getPassword() {

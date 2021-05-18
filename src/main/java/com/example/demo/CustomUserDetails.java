@@ -15,20 +15,31 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CustomUserDetails implements UserDetails {
 
     private User user;
+    private String username;
+    private String password;
+    private List<GrantedAuthority> authorities;
 
     public CustomUserDetails(User user){
         this.user = user;
+        this.username = user.getId();
+        this.password = user.getPassword();
+        this.authorities = Arrays.stream(user.getRoles().split(","))
+                        .map(SimpleGrantedAuthority::new)
+                        .collect(Collectors.toList());
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority(user.getUserType()));
+        return Collections.singleton(new SimpleGrantedAuthority(user.getRoles()));
     }
 
     @Override

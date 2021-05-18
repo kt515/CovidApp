@@ -11,8 +11,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
-@Configuration
+
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -20,36 +22,27 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Bean
-    public UserDetailsService userDetailsService(){
-        return new CustomUserDetailsService();
-    }
-
-    @Bean
-    AuthenticationProvider authenticationProvider() {
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setUserDetailsService(userDetailsService);
-        provider.setPasswordEncoder(new BCryptPasswordEncoder());
-        return provider;
+    public PasswordEncoder encoder() {
+        return NoOpPasswordEncoder.getInstance(); // this removes encoding
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception{
-        auth.authenticationProvider(authenticationProvider());
-    }
+        auth.userDetailsService(userDetailsService);
+        }
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
                 .antMatchers("/")
                 .permitAll()
-                .anyRequest()
-                .authenticated()
+                .antMatchers("/public").hasRole("PUBLIC")
+                .antMatchers("/business").hasRole("BUSINESS")
+                .antMatchers("/hcorg").hasRole("HCORG")
+                .antMatchers("/hcstaff").hasRole("HCSTAFF")
                 .and()
-                .formLogin()
-                    .usernameParameter("id")
-                    .permitAll();
-
-
+                .formLogin();
     }
 
 }
