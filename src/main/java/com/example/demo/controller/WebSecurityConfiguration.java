@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.controller.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -41,6 +40,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/")
                 .permitAll()
+                .antMatchers("/*").authenticated()
                 .antMatchers("/public").hasRole("PUBLIC")
                 .antMatchers("/business").hasRole("BUSINESS")
                 .antMatchers("/hcorg").hasRole("HCORG")

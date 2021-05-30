@@ -1,78 +1,54 @@
 package com.example.demo.entity;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.Collections;
+import java.util.List;
 
 @Entity
-@Table(name="user")
+@Table(name = "user")
 public class User {
 
     @Id
-    private String id; //NRIC or other forms of identification
+    @Column(name = "user_id", nullable = false, unique = true)
+    private String user_id;
 
-    @Column(nullable = false, length = 25)
-    private String firstName;
-
-    @Column(nullable = false, length = 25)
-    private String lastName;
-
-    @Column(nullable = false, length = 45)
-    private String roles;
-
-    @Column(nullable = false, length = 200)
+    @Column(name = "password")
     private String password;
 
-    public String toString(){
-        return "User{" +
-                "id=" + id +
-                ", firstname='" + firstName + '\'' +
-                ", lastname='" + lastName + '\'' +
-                ", password='" + password + '\'' +
-                ", userType='" + roles + '\'' +
-                '}';
-    }
-    // constructors
+    @Column(name = "roles")
+    private String roles;
 
+    @OneToMany(mappedBy = "publicId.public_userid", cascade = CascadeType.ALL)
+    private List<Public> public_userid;
+
+    @OneToMany(mappedBy = "businessId.store_id", cascade = CascadeType.ALL)
+    private List<Business> store_id;
+
+    @OneToMany(mappedBy = "healthStaffId.staff_id", cascade = CascadeType.ALL)
+    private List<HealthStaff> staff_id;
+
+    @OneToMany(mappedBy = "healthOrgId.org_id", cascade = CascadeType.ALL)
+    private List<HealthOrg> org_id;
+
+    @OneToMany(mappedBy = "user_alert", cascade = CascadeType.ALL)
+    private List<Alert> user_alert;
+
+    // constructors
     public User() {
     }
 
-    public User(String id, String firstName, String lastName, String roles, String password) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
+    public User(String user_id, String roles, String password) {
+        this.user_id = user_id;
         this.roles = roles;
         this.password = password;
     }
+
     // getters and setters
-
     public String getId() {
-        return id;
+        return user_id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setId(String user_id) {
+        this.user_id = user_id;
     }
 
     public String getRoles() {
@@ -89,6 +65,11 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "User [password=" + password + ", roles=" + roles + ", user_id=" + user_id + "]";
     }
 
 }
