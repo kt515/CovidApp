@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CovidApp created by AppDev</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div align="center">
+        <h1>Send Alerts</h1><br/>
+        <h3>Public Users</h3>
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+                <th>Public User ID</th>
+                <th>Store Name</th>
+                <th>Store Address</th>
+                <th>Date Visited</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="public : ${pubInfo}">
+                    <td th:text="${public.getPublic_record.getPublicId.getPublic_userid.getId}">Public User Id</td>
+                    <td th:text="${public.getBusiness_record.getBusinessId.getStore_name}">Store Name</td>
+                    <td th:text="${public.getBusiness_record.getBusinessId.getStore_address}">Store Address</td>
+                    <td th:text="${public.getDate_visited}">Date Visited</td>
+                    <td>
+                        <a th:href="@{'/hcstaff/sendAlert/sendPub/' + ${public.getPublic_record.getPublicId.getPublic_userid.getId} + '/' + ${public.getBusiness_record.getBusinessId.getStore_name} + '/' + ${public.getBusiness_record.getBusinessId.getStore_address} + '/' + ${public.getDate_visited}}">Send Alert</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table><br/>
+
+        <h3>Business Users</h3>
+        <table border="1" cellpadding="10">
+            <thead>
+                <tr>
+                    <th>Store ID</th>
+                    <th>Store Name</th>
+                    <th>Store Address</th>
+                    <th>Date Visited</th>
+                </tr>
+            </thead>
+                <tbody>
+                    <tr th:each="business : ${busInfo}">
+                        <td th:text="${business.getBusiness_record.getBusinessId.getStore_id.getId}">Store Id</td>
+                        <td th:text="${business.getBusiness_record.getBusinessId.getStore_name}">Store Name</td>
+                        <td th:text="${business.getBusiness_record.getBusinessId.getStore_address}">Store Address</td>
+                        <td th:text="${business.getDate_visited}">Date Visited</td>
+                        <td>
+                            <a th:href="@{'/hcstaff/sendAlert/sendBus/' + ${business.getBusiness_record.getBusinessId.getStore_id.getId}}">Send Alert</a>
+                        </td>
+                    </tr>
+                </tbody>
+        </table><br/>
+    </div>
+    </body>
+</html>

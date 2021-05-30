@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CovidApp created by AppDev</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+    <link th:rel="stylesheet" type="text/css" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>
+    <link th:rel="stylesheet" type="text/css" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>
+    <link th:rel="stylesheet" type="text/css" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" type="text/css" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/> 
+
+    
+
+</head>
+<body>
+	
+    <div class="container">
+        <form action="#" th:action="@{/business/SearchUser}" method="post" th:object="${businessSearchUserForm}">
+            <div class="form-group row">
+                <div class="col-md-4 mt-5">
+                    <label for="date">Choose a date</label>
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="date" autocomplete="off" th:field="*{date}"/>
+                        <div class="input-group-append">
+                            <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+    
+    </div>
+
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{assets/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+
+    <script>
+        $('.input-group.date').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: "yyyy-mm-dd"
+        });
+    </script>
+
+</body>
+</html>

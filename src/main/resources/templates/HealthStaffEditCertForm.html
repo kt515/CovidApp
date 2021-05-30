@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CovidApp created by AppDev</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div align="center">
+        <h1>Edit Vaccine Certificate</h1>
+        <br />
+        <form action="#" th:action="@{/hcstaff/SearchUser/Edit/Save}" th:object="${vaccineCert}" method="post">
+ 
+            <table border="0" cellpadding="10">
+                <tr>             
+                    <td>Cert Id:</td>
+                    <td>
+                        <input type="text" id="cert_id" th:field="*{cert_id}" readonly class="form-control" placeholder="Cert Id">
+                    </td>
+                </tr> 
+                <tr>             
+                    <td>User Id:</td>
+                    <td>
+                        <input type="text" id="user_id" th:field="*{public_cert.publicId.public_userid.id}" readonly class="form-control" placeholder="User_id">
+                    </td>
+                </tr>        
+                <tr>             
+                    <td>First Name:</td>
+                    <td>
+                        <input type="text" id="first_name" th:field="*{public_cert.publicId.first_name}" readonly class="form-control" placeholder="First Name"/> 
+                    </td>
+                </tr>
+                <tr>
+                    <td>Last Name:</td>
+                    <td><input type="text" id="lastName" th:field="*{public_cert.publicId.lastName}" readonly class="form-control" placeholder="Last Name"/></td>
+                </tr>
+                <tr>
+                    <td>Date Of Birth:</td>
+                    <td><input type="text" id="dob" th:field="*{public_cert.publicId.dob}" readonly class="form-control" placeholder="DOB"/></td>
+                </tr>
+                <tr>
+                    <td>Date:</td>
+                    <td><input type="text" id="date" th:field="*{date}" placeholder="Date"/></td>
+                </tr>
+                <tr>
+                    <td>Time:</td>
+                    <td><input type="text" id="time" th:field="*{time}" placeholder="Time"/></td>
+                </tr>
+                <tr>
+                    <td>Location:</td>
+                    <td><input type="text" id="vaccine_location" th:field="*{vaccine_location}" placeholder="Vaccine location"/></td>
+                </tr>                            
+                <tr>
+                    <td colspan="2"><button type="submit">Save</button> </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    </body>
+</html>

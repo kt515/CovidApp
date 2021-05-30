@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CovidApp created by AppDev</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container text-center">
+    <h2>Update Selection</h2>
+    <h3><a th:href="@{/hcorg/list_user/update/{id}/user (id=${user.id}) }">User Account Credentials</a></h3>
+    <h3><a th:href="@{/hcorg/list_user/update/{id}/public(id=${user.id})}">Public Profile</a></h3>
+   <!-- <h3><a th:href="@{/hcorg/list_user/update/{id}/public(id=${apublic.publicId.public_userid.id})}">Public Profile</a></h3>
+    <h3><a th:href="@{/hcorg/list_user/update/{id}/business(id=${business.businessId.store_id.id})}">Business Profile</a></h3>
+    <h3><a th:href="@{/hcorg/list_user/update/{id}/healthorg(id=${healthorg.healthOrgId.org_id.id})}">HCOrganisations Profile</a></h3>
+    <h3><a th:href="@{/hcorg/list_user/update/{id}/healthstaff(id=${healthstaff.healthStaffId.staff_id.id})}">HCStaff Profile</a></h3>-->
+<br>
+    <h3><a th:href="@{/logout}">Logout</a></h3>
+</div>
+
+</body>
+</html>
+

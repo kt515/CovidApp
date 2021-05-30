@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:border="http://www.w3.org/1999/xhtml">
+<head>
+  <style>
+    th.part1 {
+            padding : 10px;
+            font-family : "Calibri";
+            font-size : 120%;
+            width : 200px;
+    }
+    th.part2 {
+            padding : 10px;
+            font-family : "Calibri";
+            font-size : 100%;
+            width : 300px;
+    }
+    th, td, tr {
+        border: 0px solid transparent;
+        padding: 5px;
+    }
+
+    table {
+      width: 800px;
+      border: 1;
+      table-layout: fixed;
+    }
+}
+  </style>
+
+    <meta charset="ISO-8859-1">
+    <title>Business</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src= "https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+  	<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+  <table border:"solid transparent">
+    <tr>
+      <th class = "part1">
+<div align="center">
+		<h1>Welcome,></span></h1>
+    </th>
+    <th class = "part1">
+		<a class="navbar-brand" th:href="@{/business/viewAlert}" >Notification Alert</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+    </th>
+
+      <th class = "part1">
+
+				<a class="nav-link" th:href="@{/business/SearchUser}" >View Visitors Details</a>
+
+      </th>
+
+      <th class = "part1">
+
+				<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" th:href="@{/logout}" >Logout</a>
+
+      </th>
+		</ul>
+		</div>
+	</nav>
+
+</tr>
+
+<th class = "part2" >
+
+<a class="navbar-brand" href="#">Welcome! Please ensure your establishment follows the COVID-19 safety measures.</a>
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"></button>
+  <span class="navbar-toggler-icon"></span>
+
+</th>
+
+  </table>
+</button>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Welcome to CovidApp created by AppDev</title>
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<!--<h1>Result</h1> -->
+
+    <div align="center">
+        <!-- <a href="/business/SearchUser">Submit another message</a> -->
+        <h1>List of records</h1>
+        <br/><br/>
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Check In Time</th>
+                <th>Check Out Time</th>
+                <th>Contact Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="record : ${listRecords}">
+                <td th:text="${record.getPublic_record.getPublicId.getFirst_name}">First Name</td>
+                <td th:text="${record.getPublic_record.getPublicId.getLastName}">Last Name</td>
+                <td th:text="${record.getCheckin_time}">Check In Time</td>
+                <td th:text="${record.getCheckout_time}">Check Out Time</td>
+                <!-- <td th:text="${record.getPublic_record.getContact_no}">Contact Number</td> -->
+                <td th:each="public : ${listPublics}" th:if="(${record.getPublic_record.getPublicId.getPublic_userid.getId} == ${public.getPublicId.getPublic_userid.getId})" th:text="${public.contact_no}">Contact Number</td>
+            </tr> 
+            <br/><br/>
+            </tbody> 
+        </table>
+    </div>
+</body>
+</html>
